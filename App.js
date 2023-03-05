@@ -28,7 +28,7 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
+        <ScrollView alwaysBounceVertical={false}>
           {goals.map((goal) => (
             <View key={goal} style={styles.goalItem}>
               <Text style={styles.goalText}>{goal}</Text>
