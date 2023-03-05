@@ -12,16 +12,27 @@ export default function App() {
       { text: enteredGoalText, id: Math.random().toString() },
     ]);
   }
+
+  function deleteGoalHandler(id) {
+    setGoals((currentGoals) => {
+      return currentGoals.filter((goal) => goal.id !== id);
+    });
+  }
   return (
     <View style={styles.appContainer}>
       <GoalInput onAddGoal={addGoalHandler} />
 
       <View style={styles.goalsContainer}>
-        {/* we will dont use scroll view alwas its good for just article or small text scrolling when many data availvle scroll not the best solution */}
         <FlatList
           data={goals}
           renderItem={(itemData) => {
-            return <GoalItem text={itemData.item.text} />;
+            return (
+              <GoalItem
+                id={itemData.item.id}
+                text={itemData.item.text}
+                onDeleteItem={deleteGoalHandler}
+              />
+            );
           }}
           keyExtractor={(item, index) => {
             return item.id;
